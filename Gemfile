@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'authem'
 gem 'rails', '4.2.4'
-gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'decent_exposure'
 gem 'figaro'
 gem 'haml-rails'
