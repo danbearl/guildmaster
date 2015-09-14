@@ -1,0 +1,13 @@
+=form_for profile do |f|
+  .field
+    =f.label :display_name
+    %br
+    =f.text_field :display_name
+
+  .field
+    =f.label :about
+    %br
+    =f.text_field :about
+
+  .field
+    =f.submit("Update Profile")

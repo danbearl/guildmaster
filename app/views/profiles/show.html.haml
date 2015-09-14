@@ -3,6 +3,9 @@
     =profile.user.email
   -else
     =profile.display_name
-
 -if current_user and current_user.profile.id == profile.id
-  =link_to "Edit My Profile", edit_user_profile_path(current_user.id, profile.id)
+  =link_to "Edit My Profile", edit_user_profile_path(current_user.id)
+
+%h2 About
+
+%p= profile.about
