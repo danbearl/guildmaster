@@ -38,3 +38,7 @@ end
 Then /^I should not see "(.*?)"$/ do |text|
   expect(page).to(have_no_content(text))
 end
+
+When /^I visit "(.*?)"$/ do |url|
+  visit url
+end
