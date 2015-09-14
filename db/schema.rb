@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911022731) do
+ActiveRecord::Schema.define(version: 20150914022148) do
 
   create_table "authem_sessions", force: :cascade do |t|
     t.string   "role",                    null: false
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 20150911022731) do
 
   add_index "authem_sessions", ["expires_at", "subject_type", "subject_id"], name: "index_authem_sessions_subject"
   add_index "authem_sessions", ["expires_at", "token"], name: "index_authem_sessions_on_expires_at_and_token", unique: true
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "display_name"
+    t.string   "about"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                           null: false
