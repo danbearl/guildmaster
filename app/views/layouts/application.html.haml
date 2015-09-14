@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title Guildmaster
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  %body
+    %header#header-area
+      %div.container
+        /Main Header Starts
+        %div.main-header
+          -[:notice, :error, :alert].each do |level|
+            - unless flash[level].blank?
+              %div
+                %a{ href: "#", class: "close", data: { dismiss: "alert" } } &times;
+                = flash[level]
+    - if !current_user
+      =link_to "Log In", log_in_path
+    - else
+      =link_to "Log Out", log_out_path
+    = yield
