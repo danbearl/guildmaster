@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'rdiscount'
 gem 'turbolinks'
+gem 'therubyracer'
 
 group :assets do
   gem 'sass-rails',   '~> 4.0.0'
