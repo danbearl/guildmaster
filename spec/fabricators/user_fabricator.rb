@@ -1,1 +1,3 @@
-Fabricator(:user)
+Fabricator(:user) do
+  profile
+end
