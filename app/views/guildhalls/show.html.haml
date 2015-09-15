@@ -4,4 +4,4 @@
 
 %ul
   -guildhall.adventurers.each do |adventurer|
-    %li=adventurer.name
+    %li=link_to adventurer.name, adventurer
