@@ -18,6 +18,7 @@
                 = flash[level]
     %ul
       - if !current_user
+        %li=link_to "Sign up!", new_user_path
         %li=link_to "Log In", log_in_path
       - else
         %li=link_to "Log Out", log_out_path

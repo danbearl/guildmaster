@@ -1,2 +1,25 @@
-%h1 Users#new
-%p Find me in app/views/users/new.html.haml
+%h1 Create a new account and start your guild!
+
+=form_for user do |f|
+  .field
+    =f.label :email
+    %br
+    =f.text_field :email
+
+  .field
+    =label_tag :display_name, "Display Name"
+    %br
+    =text_field_tag :display_name
+
+  .field
+    =f.label :password
+    %br
+    =f.text_field :password
+
+  .field
+    =f.label :password_confirmation
+    %br
+    =f.text_field :password_confirmation
+
+  .field
+    =f.submit "Create Account"

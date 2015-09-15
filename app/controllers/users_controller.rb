@@ -5,9 +5,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.build_profile
+    @user.profile.display_name = params[:display_name]
 
     if @user.save
-      redirect_to root_path, notice: "Welcome! Please take the time to fill out your profile!"
+      sign_in(@user)
+      redirect_to root_path, notice: "Account successfully created!"
     else
       render "new"
     end
