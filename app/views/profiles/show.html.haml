@@ -4,7 +4,10 @@
   -else
     =profile.display_name
 -if current_user and current_user.profile.id == profile.id
-  =link_to "Edit My Profile", edit_user_profile_path(current_user.id)
+  %ul
+    %li=link_to "Edit My Profile", edit_user_profile_path(current_user.id)
+    %li=link_to "Delete My Account", user_path(current_user.id), method: :delete, confirmation: "This cannot be undone. Are you sure you want to delete your account?"
+
 
 %h2 About
 

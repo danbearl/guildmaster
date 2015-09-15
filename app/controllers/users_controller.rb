@@ -19,8 +19,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    sign_out(user)
+    user.destroy
+    redirect_to :root, notice: "Account successfully deleted."
+  end
+
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
+  end
+
+  def current_user_is_user
+    unless user.id == current_user.id
+      redirect_to :root
+    end
+    return false
   end
 end
