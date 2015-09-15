@@ -1,2 +1,10 @@
-%h1 Guildhalls#edit
-%p Find me in app/views/guildhalls/edit.html.haml
+%h1 Edit Guildhall
+
+=form_for guildhall do |f|
+  .field
+    =f.label :name
+    %br
+    =f.text_field :name
+
+  .field
+    =f.submit "Update Guild"
