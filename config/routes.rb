@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'welcome#index'
 
   get 'log_in' => 'sessions#new', as: 'log_in'
@@ -6,7 +7,8 @@ Rails.application.routes.draw do
 
   resources :sessions
   resources :profiles
-  resources :users, only: [:new, :create, :delete] do
+  resources :users, only: [:new, :create, :destroy] do
     resource :profile, only: [:show, :edit]
+    resource :guildhall, only: [:show, :edit]
   end
 end
