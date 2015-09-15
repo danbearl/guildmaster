@@ -1,8 +1,11 @@
 class ProfilesController < ApplicationController
-  before_filter :user_owns_profile, only: [:edit]
+  before_filter :user_owns_profile, only: [:edit, :update]
 
   expose(:profiles)
-  expose(:profile) { Profile.where("user_id = ?", params[:user_id]).first }
+  expose(:profile) do
+    Profile.where("user_id = ?", params[:user_id]).first ||
+    Profile.find(params[:id])
+  end
 
   def update
     @profile = Profile.find(params[:id])
