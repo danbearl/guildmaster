@@ -1,0 +1,19 @@
+%h1 Town Square
+
+%p Several fresh recruits have gathered hoping for a chance to prove themselves
+
+%table
+  %tr
+    %th Name
+    %th Skills
+  -new_adventurers.each do |adventurer|
+    %tr
+      %td= adventurer.name
+      %td
+        %ul
+          -adventurer.skills.each do |skill, level|
+            %li= skill.to_s.gsub('_', ' ').capitalize + " " + level.to_s
+      %td
+        =form_tag '/adventurers', method: :post do |f|
+          =hidden_field_tag :adventurer_id, adventurer.id
+          =submit_tag "Hire"

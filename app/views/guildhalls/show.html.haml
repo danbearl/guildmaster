@@ -1,3 +1,7 @@
 %h1= guildhall.name
 
 =link_to "Edit Guildhall", edit_user_guildhall_path(guildhall.user.id)
+
+%ul
+  -guildhall.adventurers.each do |adventurer|
+    %li=adventurer.name

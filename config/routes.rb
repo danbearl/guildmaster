@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :sessions
   resources :profiles
   resources :guildhalls
+  resources :adventurers, only: [:new, :create, :show, :index]
   resources :users, only: [:new, :create, :destroy] do
     resource :profile, only: [:show, :edit]
     resource :guildhall, only: [:show, :edit]

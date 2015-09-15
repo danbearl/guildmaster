@@ -24,4 +24,5 @@
         %li=link_to "Log Out", log_out_path
         %li=link_to "My Profile", user_profile_path(current_user.id)
         %li=link_to "My Guildhall", user_guildhall_path(current_user.id)
+        %li=link_to "Town Square", new_adventurer_path
     = yield

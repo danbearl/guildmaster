@@ -10,6 +10,7 @@ gem 'pg'
 gem 'rdiscount'
 gem 'turbolinks'
 gem 'therubyracer'
+gem 'faker'
 
 group :assets do
   gem 'sass-rails',   '~> 4.0.0'
