@@ -19,6 +19,10 @@ class Adventurer < ActiveRecord::Base
     self.skills.values.inject {|sum, x| sum + x }
   end
 
+  def salary
+    (level / 4).floor + 1
+  end
+
   private
   def self.skill_list
     [:melee, :black_magic, :white_magic, :swimming, :climbing, :archery, :stealth, :lock_picking, :knowledge, :common_sense]

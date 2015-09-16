@@ -5,7 +5,7 @@ class AdventurersController < ApplicationController
   expose(:adventurers)
   expose(:adventurer)
   expose(:new_adventurers) { [Adventurer.create, Adventurer.create, Adventurer.create] }
-  expose(:unemployed_adventurers) { Adventurer.where("guild_id = ?", 0) }
+  expose(:unemployed_adventurers) { Adventurer.where("guildhall_id = ?", 0) }
 
   def new
     session[:adventurer_ids] = new_adventurers.map { |a| a.id }
@@ -50,7 +50,7 @@ class AdventurersController < ApplicationController
   def deny_user_access
     redirect_to :root, notice: "You must be logged in to do that."
   end
-  
+
   def user_owns_adventurer
     unless current_user.guildhall.id == adventurer.guildhall_id
       redirect_to :root

@@ -25,4 +25,5 @@
         %li=link_to "My Profile", user_profile_path(current_user.id)
         %li=link_to "My Guildhall", user_guildhall_path(current_user.id)
         %li=link_to "Town Square", new_adventurer_path
+        %li=link_to "Free Market", adventurer_market_path
     = yield

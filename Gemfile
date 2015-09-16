@@ -29,11 +29,11 @@ group :development, :test do
   gem 'pry'
   gem 'fabrication'
   gem 'database_cleaner'
+  gem 'rspec-rails'
 end
 
 group :test do
   gem 'cucumber-rails', require: false
   gem 'dirty'
-  gem 'rspec-rails'
   gem 'capybara'
 end

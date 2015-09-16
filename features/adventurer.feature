@@ -41,3 +41,19 @@ Feature: Adventurers
     Then I should see "Billy"
     And I should see "Joe"
     And I should see "Sally"
+
+  Scenario: Users can only hire experienced adventurers if they can pay the advance
+    Given the following user:
+      | email                 | dan@example.com |
+      | password              | pass            |
+      | password_confirmation | pass            |
+    And that user is logged in
+    And the following adventurers:
+      | guildhall_id | name  |
+      | 0            | Billy |
+      | 0            | Joe   |
+      | 0            | Sally |
+    And I am on the home page
+    When I follow "Free Market"
+    And I hire the first adventurer
+    Then I should see "You can't afford Billy's advance."

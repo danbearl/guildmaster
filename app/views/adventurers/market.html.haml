@@ -1,0 +1,20 @@
+%h1 Adventurer Market
+%p The following adventurers are unemployed and looking for a guild to call their home.
+
+%table
+  %tr
+    %th Name
+    %th Skills
+    %th Advance
+  -unemployed_adventurers.each do |adventurer|
+    %tr
+      %td= adventurer.name
+      %td
+        %ul
+          -adventurer.skills.each do |skill, level|
+            %li= skill.to_s.gsub("_", " ") + " " + level.to_s
+      %td= adventurer.salary * 4
+      %td{id: "adventurer_#{adventurer.id}_form"}
+        =link_to "Hire", hire_adventurer_path(adventurer.id)
+
+
