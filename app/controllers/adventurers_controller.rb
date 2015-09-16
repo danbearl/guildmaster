@@ -1,12 +1,20 @@
 class AdventurersController < ApplicationController
   before_filter :require_user
+  before_filter :user_owns_adventurer, only: [:fire]
 
   expose(:adventurers)
   expose(:adventurer)
   expose(:new_adventurers) { [Adventurer.create, Adventurer.create, Adventurer.create] }
+  expose(:unemployed_adventurers) { Adventurer.where("guild_id = ?", 0) }
 
   def new
     session[:adventurer_ids] = new_adventurers.map { |a| a.id }
+  end
+
+  def fire
+    adventurer.update_attribute(:guildhall_id, 0)
+    adventurer.save
+    redirect_to user_guildhall_path(current_user.id), notice: "#{adventurer.name} has left your guild."
   end
 
   def create
@@ -41,6 +49,13 @@ class AdventurersController < ApplicationController
 
   def deny_user_access
     redirect_to :root, notice: "You must be logged in to do that."
+  end
+  
+  def user_owns_adventurer
+    unless current_user.guildhall.id == adventurer.guildhall_id
+      redirect_to :root
+    end
+    return false
   end
 
 end

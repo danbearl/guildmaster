@@ -1,4 +1,6 @@
 %h1= adventurer.name
+-if current_user and current_user.guildhall.id == adventurer.guildhall_id
+  =link_to "Fire Adventurer", fire_adventurer_path(adventurer.id)
 %h2 Skills
 %ul
   - adventurer.skills.each do |skill, level|
