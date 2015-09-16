@@ -13,7 +13,7 @@
         %ul
           -adventurer.skills.each do |skill, level|
             %li= skill.to_s.gsub('_', ' ').capitalize + " " + level.to_s
-      %td
+      %td{id: "adventurer_#{adventurer.id}_form"}
         =form_tag '/adventurers', method: :post do |f|
           =hidden_field_tag :adventurer_id, adventurer.id
           =submit_tag "Hire"

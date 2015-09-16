@@ -1,5 +1,5 @@
 %h1= adventurer.name
 %h2 Skills
-  %ul
-    - adventurer.skills.each do |skill, level|
-      %li= skill.to_s.gsub('_',' ').capitalize + ' ' + level
+%ul
+  - adventurer.skills.each do |skill, level|
+    %li= skill.to_s.gsub('_',' ').capitalize + ' ' + level.to_s

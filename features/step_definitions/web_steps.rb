@@ -31,6 +31,12 @@ When /^I press "(.*?)"$/ do |action|
   click_button action
 end
 
+When /^I press the hire button$/ do
+  within "td#adventurer_1_form" do
+    click_button "Hire"
+  end
+end
+
 Then /^I should see "(.*?)"$/ do |text|
   expect(page).to have_content(text)
 end
