@@ -30,6 +30,7 @@ group :development, :test do
   gem 'fabrication'
   gem 'database_cleaner'
   gem 'rspec-rails'
+  gem 'nyan-cat-formatter'
 end
 
 group :test do
