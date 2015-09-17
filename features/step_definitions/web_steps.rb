@@ -7,8 +7,26 @@ Given /^that user is logged in$/ do
   click_button "Log In"
 end
 
+Given /^a user with a full guild$/ do
+  @user = Fabricate(:user,
+                    email: "dan@example.com",
+                    password:"pass",
+                    password_confirmation: "pass"
+                   ) do
+    guildhall
+  end
+
+  4.times do
+    Fabricate(:adventurer, guildhall_id: 1)
+  end
+end
+
 Given /^I am on the home page$/ do
   visit root_path
+end
+
+Given /^a highly skilled unemployed adventurer$/ do
+  Fabricate(:adventurer, skills: {archery: 100, melee: 100, stealth: 100}, guildhall_id: 0)
 end
 
 Given /^I am on the log in page$/ do
@@ -34,6 +52,12 @@ end
 When /^I press the hire button$/ do
   within "td#adventurer_1_form" do
     click_button "Hire"
+  end
+end
+
+When /^I hire the first adventurer$/ do
+  within "td#adventurer_1_form" do
+    click_link "Hire"
   end
 end
 
