@@ -7,6 +7,7 @@ class AdventurersController < ApplicationController
   expose(:new_adventurers) { [Adventurer.create, Adventurer.create, Adventurer.create] }
   expose(:unemployed_adventurers) { Adventurer.where("guildhall_id = ?", 0) }
   expose(:guildhall) { current_user.guildhall }
+  expose(:quest)
 
   def new
     session[:adventurer_ids] = new_adventurers.map { |a| a.id }
@@ -16,6 +17,11 @@ class AdventurersController < ApplicationController
     adventurer.update_attribute(:guildhall_id, 0)
     adventurer.save
     redirect_to user_guildhall_path(current_user.id), notice: "#{adventurer.name} has left your guild."
+  end
+
+  def quest
+    quest_log = adventurer.go_on_quest(quest)
+    adventurer.quest_logs.create(body: quest_log[:body], success: quest_log[:success])
   end
 
   def hire
