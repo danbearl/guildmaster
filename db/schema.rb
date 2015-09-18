@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917170824) do
+ActiveRecord::Schema.define(version: 20150918133332) do
 
   create_table "adventurers", force: :cascade do |t|
     t.text     "name"
@@ -36,6 +36,22 @@ ActiveRecord::Schema.define(version: 20150917170824) do
   add_index "authem_sessions", ["expires_at", "subject_type", "subject_id"], name: "index_authem_sessions_subject"
   add_index "authem_sessions", ["expires_at", "token"], name: "index_authem_sessions_on_expires_at_and_token", unique: true
 
+  create_table "bids", force: :cascade do |t|
+    t.integer  "guildhall_id"
+    t.integer  "quest_id"
+    t.integer  "amount"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "contracts", force: :cascade do |t|
+    t.integer  "guildhall_id"
+    t.integer  "quest_id"
+    t.integer  "amount"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "guildhalls", force: :cascade do |t|
     t.text     "name"
     t.integer  "gold"
@@ -51,6 +67,13 @@ ActiveRecord::Schema.define(version: 20150917170824) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "user_id"
+  end
+
+  create_table "quest_logs", force: :cascade do |t|
+    t.integer  "adventurer_id"
+    t.text     "body"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "quests", force: :cascade do |t|

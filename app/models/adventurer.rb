@@ -1,5 +1,6 @@
 class Adventurer < ActiveRecord::Base
   belongs_to :guildhall
+  has_many :quest_logs
   serialize :skills
 
   after_initialize :init_adventurer
