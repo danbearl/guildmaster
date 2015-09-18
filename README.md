@@ -18,3 +18,12 @@ This game has *users* who have *guilds* which hire *adventurers* who go on *ques
 
 
 *Guilds* have *guild halls* that begin as single room dormatories, but can be improved by purchasing new *rooms*. These *rooms* allow *adventurers* to spend time training and gaining experience outside of *adventures*.
+
+##The Bidding Process
+New *quests* are generated daily and have variable lengths and difficulties. They comprise dicsreet steps culminating in a capstone event (defeating a dragon, procuring a relic, etc). They also have a deadline, which is twice the number of steps in the quest. It takes adventurers one day to complete each step, so a quest with three steps will take three days to complete, and will have a deadline six days from the date the contract is awarded. 
+
+###Bidding Periods
+Each quest will have a three day bidding period. This is the time during which the players may place bids on the quest. At the end of the bid period, the player with the lowest bid will earn a contract for the quest. If a quest receives no bids during its bidding period, the offer expires and that quest is deleted.
+
+###Executing Contracts
+A contract will remain in the user's inventory until she executes the contract from her guildhall by assigning an adventurer to it, or until the contract expires. That adventurer will then be unavailable until the quest is complete. If the adventurer is unsuccessful, then it will only be unavailable for a number of days equal to the number of steps attempted. A player may continue to attempt a quest up until its expiration date. Quests that are completed on or before the due date will earn the player the full payout on the contract. Quests completed after the due date will earn the player half of his bid. Adventurers who complete quests beyond the deadline will still earn quest rewards such as equipment and titles.
