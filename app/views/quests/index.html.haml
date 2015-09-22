@@ -1,0 +1,22 @@
+%h1 Quests
+- if !unclaimed_quests.empty? then
+  %h2 The following quests are available for bids:
+  %table
+    %tr
+      %th Quest
+      %th Length
+      %th Difficulty
+      %th Deadline
+      %th Lowest Bid
+    - unclaimed_quests.each do |quest|
+      %tr
+        %td= quest.title
+        %td= quest.steps.count
+        %td= quest.difficulty_multiplier
+        %td= quest.deadline
+        %td= "#{quest.lowest_bid} gold"
+        %td
+          =link_to "Bid", new_quest_bid_path(quest.id)
+- else
+  %h2 There are no more quests available today. Please check again tomorrow.
+

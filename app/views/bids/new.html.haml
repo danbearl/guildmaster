@@ -1,0 +1,8 @@
+%h1= "Place a bid on #{quest.title}"
+
+=form_for bid, url: quest_bids_path do |f|
+  =f.label :amount
+  %br
+  =f.number_field :amount
+  %br
+  =f.submit "Place Bid"

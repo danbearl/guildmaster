@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   resources :sessions
   resources :profiles
   resources :guildhalls
+  resources :bids, only: [:new, :create]
+  resources :quests, only: [:index, :show] do
+    resources :bids, only: [:new, :create]
+  end
   resources :adventurers, only: [:new, :create, :show, :index]
   resources :users, only: [:new, :create, :destroy] do
     resource :profile, only: [:show, :edit]

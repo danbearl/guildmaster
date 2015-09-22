@@ -1,20 +1,32 @@
 class Quest < ActiveRecord::Base
   serialize :steps
   serialize :rewards
+  has_one :contract
+  has_many :bids
 
   after_initialize :init_quest
 
+  def lowest_bid
+    unless self.bids.empty?
+      self.bids.sort { |a, b| a.amount <=> b.amount }.first.amount
+    else
+      0
+    end
+  end
+
   private
   def init_quest
-    self.difficulty_multiplier = rand(1..10)
-    self.steps = Quest.create_quest_steps
-    self.steps.each do |step|
-      step[:difficulty] = rand(1..5) * self.difficulty_multiplier
+    unless self.id
+      self.difficulty_multiplier = rand(1..10)
+      self.steps = Quest.create_quest_steps
+      self.steps.each do |step|
+        step[:difficulty] = rand(1..5) * self.difficulty_multiplier
+      end
+      self.guildhall_id = 0
+      self.rewards = Quest.generate_rewards
+      self.deadline = Date.today + steps.count * 2
+      self.title = steps.last[:title]
     end
-    self.guildhall_id = 0
-    self.rewards = Quest.generate_rewards
-    self.deadline = Date.today + steps.count * 2
-    self.title = steps.last[:title]
   end
 
   def self.create_quest_steps
