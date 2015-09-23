@@ -5,3 +5,16 @@
 %ul
   -guildhall.adventurers.each do |adventurer|
     %li=link_to adventurer.name, adventurer
+
+-if !guildhall.contracts.empty?
+  %h3 Current Quests:
+  %ul
+    -guildhall.contracts.each do |contract|
+      %li
+        .quest-title
+          =contract.quest.title
+        .quest-status
+          -if contract.task == nil
+            =link_to "Send adventurer on quest", new_contract_task_path(contract.id)
+          -else
+            = "#{contract.task.adventurer.name} is currently on this quest."

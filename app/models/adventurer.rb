@@ -1,6 +1,7 @@
 class Adventurer < ActiveRecord::Base
   belongs_to :guildhall
   has_many :quest_logs
+  has_one :task
   serialize :skills
 
   after_initialize :init_adventurer
@@ -18,8 +19,9 @@ class Adventurer < ActiveRecord::Base
   end
 
   def go_on_quest(quest)
-    quest_log = { success: true, body: "" }
+    quest_log = { success: true, body: "", steps_completed: 0 }
     quest.steps.each do |step|
+      quest_log[:steps_completed] += 1
       quest_log[:body] += step[:description] + "\n"
       skill = determine_best_skill(step)
       if(attempt_step(step, skill))

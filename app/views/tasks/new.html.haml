@@ -1,0 +1,6 @@
+%h1 Select the adventurer to send on this quest:
+%ul
+  - guildhall.adventurers.each do |adventurer|
+    %li= link_to adventurer.name, new_adventurer_contract_task_path(adventurer.id, contract.id), method: :post
+
+

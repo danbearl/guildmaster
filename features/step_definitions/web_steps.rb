@@ -21,6 +21,12 @@ Given /^a user with a full guild$/ do
   end
 end
 
+Given /^that user has a quest$/ do
+  @quest = Fabricate(:quest)
+  Fabricate(:guildhall, user_id: @user.id)
+  Fabricate(:contract, guildhall_id: @user.guildhall.id, quest_id: @quest.id)
+end
+
 Given /^I am on the home page$/ do
   visit root_path
 end

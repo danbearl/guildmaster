@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'tasks/new'
+
   root 'welcome#index'
 
   get 'log_in' => 'sessions#new', as: 'log_in'
@@ -7,6 +9,8 @@ Rails.application.routes.draw do
   get 'adventurer/:id/fire' => 'adventurers#fire', as: 'fire_adventurer'
   get 'adventurer/:id/hire' => 'adventurers#hire', as: 'hire_adventurer'
   get 'adventurers/market' => 'adventurers#market', as: 'adventurer_market'
+  get 'contract/:id/tasks/new' => 'tasks#new', as: 'new_contract_task'
+  post 'adventurers/:id/contract/:id/tasks/create' => 'tasks#create', as: 'new_adventurer_contract_task'
 
   resources :sessions
   resources :profiles

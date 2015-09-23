@@ -10,4 +10,14 @@ describe Quest do
     expect(quest.deadline).to_not be(nil)
     expect(quest.complete).to be(false)
   end
+
+  #quest#lowest_bid
+  it "reports its current lowest bid" do
+    quest = Quest.new
+    quest.bids.build(amount: 10)
+    quest.bids.build(amount: 20)
+    quest.bids.build(amount: 30)
+
+    expect(quest.lowest_bid).to be(10)
+  end
 end
