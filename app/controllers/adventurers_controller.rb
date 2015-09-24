@@ -40,7 +40,7 @@ class AdventurersController < ApplicationController
   def create
     validation = validate_for_hire
 
-    unless adventurer.temp == true and session[:adventurer_ids].include?(adventurer.id) || validation[:valid?]
+    unless adventurer.temp == true and session[:adventurer_ids].include?(adventurer.id) and validation[:valid?]
       dump_temp_adventurers
       redirect_to :root, notice: validation[:reason] and return
     end
