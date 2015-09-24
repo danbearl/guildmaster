@@ -35,7 +35,7 @@ class Adventurer < ActiveRecord::Base
     end
 
     skill = skills_used.sample
-    self.skills[skill] = self.skills[skill].nil? ? 1 : self.skils[skill] + 1
+    self.skills[skill] = self.skills[skill].nil? ? 1 : self.skills[skill] + 1
     return quest_log
   end
 
@@ -46,6 +46,7 @@ class Adventurer < ActiveRecord::Base
 
   def init_adventurer
     self.name ||= Faker::Name.first_name + " " + Faker::Name.last_name
+    self.guildhall_id ||= 0
     unless self.skills
       self.skills = { }
       3.times do

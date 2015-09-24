@@ -25,47 +25,55 @@ class AdventurersController < ApplicationController
   end
 
   def hire
-    if adventurer.guildhall_id != 0
-      notice = "That adventurer is already employed."
-    elsif guildhall.adventurers.count >= guildhall.capacity
-      notice = "You cannot hire any more adventurers. Your guild is at capacity."
+    validation = validate_for_hire
+
+    unless validation[:valid?]
+      redirect_to :root, notice: validation[:reason] and return
     else
-      if guildhall.gold >= adventurer.advance
-        guildhall.update_attribute(:gold, guildhall.gold - adventurer.advance)
-        adventurer.update_attribute(:guildhall_id, guildhall.id)
-        notice = "#{adventurer.name} is now a member of your guild."
-      else
-        notice = "You can't afford #{adventurer.name}'s advance."
-      end
+      guildhall.update_attribute(:gold, guildhall.gold - adventurer.advance)
+      adventurer.update_attribute(:guildhall_id, guildhall.id)
+      redirect_to adventurer_market_path, notice: "#{adventurer.name} is now a member of your guild."
     end
 
-    redirect_to adventurer_market_path, notice: notice
   end
 
   def create
-    unless adventurer.temp == true and session[:adventurer_ids].include?(adventurer.id)
+    validation = validate_for_hire
+
+    unless adventurer.temp == true and session[:adventurer_ids].include?(adventurer.id) || validation[:valid?]
       dump_temp_adventurers
-      redirect_to :root, notice: "You can only hired one of the provided adventurers!"
-      return
+      redirect_to :root, notice: validation[:reason] and return
     end
 
     adventurer.update_attribute(:guildhall_id, current_user.guildhall.id)
 
-    session[:adventurer_ids].delete_if {|id| id == adventurer.id}
     dump_temp_adventurers
 
     if adventurer.save
       redirect_to user_guildhall_path(current_user.id), notice: "#{adventurer.name} hired!"
-      return
     else
-      redirect_to :root, notice: "Something went wrong!"
-      return
+      render :new, notice: "Something went wrong!"
     end
 
   end
 
   private
+  def validate_for_hire
+    validation = {}
+    if adventurer.guildhall_id != 0
+      validation[:reason] = "That adventurer is already employed."
+    elsif guildhall.adventurers.count >= guildhall.capacity
+      validation[:reason] = "You cannot hire any more adventurers. Your guild is at capacity."
+    elsif guildhall.gold < adventurer.advance
+      validation[:reason] = "You can't afford to hire this adventurer."
+    end
+
+    validation[:valid?] = validation[:reason].nil? ? true : false
+    validation
+  end
+
   def dump_temp_adventurers
+    session[:adventurer_ids].delete_if {|id| id == adventurer.id}
     session[:adventurer_ids].each do |id|
       Adventurer.find(id).destroy
     end
