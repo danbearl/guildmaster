@@ -20,12 +20,13 @@ class Adventurer < ActiveRecord::Base
 
   def go_on_quest(quest)
     quest_log = { success: true, body: "", steps_completed: 0 }
+    skills_used = []
     quest.steps.each do |step|
       quest_log[:steps_completed] += 1
       quest_log[:body] += step[:description] + "\n"
-      skill = determine_best_skill(step)
-      if(attempt_step(step, skill))
-        quest_log[:body] += step[:skills][skill] + "\n"
+      skills_used << determine_best_skill(step)
+      if(attempt_step(step, skills_used.last))
+        quest_log[:body] += step[:skills][skills_used.last] + "\n"
       else
         quest_log[:body] += step[:action_failure] + "\n"
         quest_log[:success] = false
@@ -33,6 +34,8 @@ class Adventurer < ActiveRecord::Base
       end
     end
 
+    skill = skills_used.sample
+    self.skills[skill] = self.skills[skill].nil? ? 1 : self.skils[skill] + 1
     return quest_log
   end
 
