@@ -11,6 +11,7 @@ gem 'rdiscount'
 gem 'turbolinks'
 gem 'therubyracer'
 gem 'faker'
+gem 'newrelic_rpm'
 
 group :assets do
   gem 'sass-rails',   '~> 4.0.0'
