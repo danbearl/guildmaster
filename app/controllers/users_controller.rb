@@ -11,6 +11,10 @@ class UsersController < ApplicationController
     @user.profile.display_name = params[:display_name]
     @user.guildhall.name = "#{params[:display_name]}'s Guild"
 
+    3.times do
+      Quest.create
+    end
+
     if @user.save
       sign_in(@user)
       redirect_to root_path, notice: "Account successfully created!"
