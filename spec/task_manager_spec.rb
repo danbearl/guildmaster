@@ -94,4 +94,13 @@ describe TaskManager do
     end
   end
 
+  describe '.depart_the_longterm_unemployed' do
+    it 'destroys longterm unemployed' do
+      Fabricate(:adventurer, entered_market_at: Date.today - 6)
+      TaskManager.depart_the_longterm_unemployed
+
+      expect(Adventurer.all.count).to eq(0)
+    end
+  end
+
 end

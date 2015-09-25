@@ -23,4 +23,9 @@ namespace :manager do
   task complete_quests: :environment do
     TaskManager.complete_quests
   end
+
+  desc "Delete long-term unemployed"
+  task depart_the_longterm_unemployed: :environment do
+    TaskManager.depart_the_longterm_unemployed
+  end
 end

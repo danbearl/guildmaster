@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923172535) do
+ActiveRecord::Schema.define(version: 20150925111139) do
 
   create_table "adventurers", force: :cascade do |t|
     t.text     "name"
     t.integer  "guildhall_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.text     "skills"
-    t.boolean  "temp",         default: true
+    t.boolean  "temp",              default: true
+    t.date     "entered_market_at"
   end
 
   create_table "authem_sessions", force: :cascade do |t|
