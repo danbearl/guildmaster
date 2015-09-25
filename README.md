@@ -27,3 +27,11 @@ Each quest will have a three day bidding period. This is the time during which t
 
 ###Executing Contracts
 A contract will remain in the user's inventory until she executes the contract from her guildhall by assigning an adventurer to it, or until the contract expires. That adventurer will then be unavailable until the quest is complete. If the adventurer is unsuccessful, then it will only be unavailable for a number of days equal to the number of steps attempted. A player may continue to attempt a quest up until its expiration date. Quests that are completed on or before the due date will earn the player the full payout on the contract. Quests completed after the due date will earn the player half of his bid. Adventurers who complete quests beyond the deadline will still earn quest rewards such as equipment and titles.
+
+##TODO
+Here is a list of features and enhancements for the game:
+- Logs - a logging system that keeps track of events in the game to be used for notifying players of things that affect them (quest completions, contract awards, adventurers quitting, etc.)
+- Messaging - A way for players to communicate with each other in-game
+- Routine quests - short quests that don't require bidding and can be started the day they are accepted. These should provide a way for new players to earn a little gold when first starting off
+- Guildhall improvements - increase guildhall capacity, add training rooms, and aesthetic improvements
+- Adventurer personalities - currently, the algorithms for adventurer actions are uniform and determinative. I would like to make their decisions (whether to quit if they aren't paid,whether to leave the realm for better opportunities, etc.) more on personal preferences and attitudes. i.e., Adventurers with high loyalty are less likely to leave a guild if they are dissatisfied.
