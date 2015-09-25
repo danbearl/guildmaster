@@ -14,7 +14,7 @@ class AdventurersController < ApplicationController
   end
 
   def fire
-    adventurer.update_attribute(:guildhall_id, 0)
+    adventurer.update_attributes(guildhall_id: 0, entered_market_at: Date.today)
     adventurer.save
     redirect_to user_guildhall_path(current_user.id), notice: "#{adventurer.name} has left your guild."
   end

@@ -66,4 +66,12 @@ class TaskManager
 
   end
 
+  def self.depart_the_longterm_unemployed
+    Adventurer.all.each do |adventurer|
+      if adventurer.guildhall_id == 0 and adventurer.entered_market_at + 5 < Date.today
+        adventurer.destroy
+      end
+    end
+  end
+
 end
