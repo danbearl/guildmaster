@@ -45,7 +45,7 @@ class AdventurersController < ApplicationController
       redirect_to :root, notice: validation[:reason] and return
     end
 
-    adventurer.update_attribute(:guildhall_id, current_user.guildhall.id)
+    adventurer.update_attributes(guildhall_id: current_user.guildhall.id, temp: false)
 
     dump_temp_adventurers
 

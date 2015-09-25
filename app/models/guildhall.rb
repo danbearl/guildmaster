@@ -8,7 +8,7 @@ class Guildhall < ActiveRecord::Base
   private
 
   def init_guildhall
-    self.gold = 10
-    self.capacity = 4
+    self.gold ||= 10
+    self.capacity ||= 4
   end
 end

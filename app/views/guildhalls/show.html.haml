@@ -7,6 +7,12 @@
   %li
     Gold:
     =guildhall.gold
+  %li
+    Capacity:
+    =guildhall.capacity
+  %li
+    Total Salaries:
+    =guildhall.adventurers.map {|a| a.salary}.inject { |sum, a| sum + a }
 
 -if !guildhall.adventurers.empty?
   %h3 Adventurers

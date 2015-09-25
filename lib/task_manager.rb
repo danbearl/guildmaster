@@ -51,14 +51,19 @@ class TaskManager
       gold = user.guildhall.gold
       user.guildhall.adventurers.each do |adventurer|
         if gold < adventurer.salary
-          adventurer.update_attribute(guildhall_id: 0)
+          adventurer.update_attribute(:guildhall_id, 0)
         else
           gold -= adventurer.salary
         end
+
+        adventurer.save if adventurer.changed?
       end
 
-      user.guildhall.update_attribute(gold: gold)
+      user.guildhall.update_attribute(:gold, gold)
+      user.guildhall.save if user.guildhall.changed?
     end
+
+
   end
 
 end

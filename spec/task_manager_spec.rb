@@ -74,4 +74,24 @@ describe TaskManager do
     end
   end
 
+  describe '.pay_adventurers' do
+    let(:user) do
+      Fabricate(:user) do
+        guildhall
+      end
+    end
+
+    let(:adventurer) do
+      Fabricate(:adventurer, guildhall_id: 1)
+    end
+
+    it 'pays from guildhall coffers' do
+      user
+      adventurer
+      TaskManager.pay_adventurers
+
+      expect(Guildhall.first.gold).to eq(9)
+    end
+  end
+
 end
